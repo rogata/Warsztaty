@@ -8,6 +8,11 @@
     <title>Flights reservations</title>
 </head>
 <body>
-
+    <h3><?php include 'includes/visits.php'; ?></h3>
+    
+    <?php
+    include_once 'includes/airports.php';
+    include_once 'includes/form.php'; 
+    ?>
 </body>
 </html>
