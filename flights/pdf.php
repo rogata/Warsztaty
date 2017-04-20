@@ -77,45 +77,53 @@ require_once './vendor/autoload.php';
 
     $numberToWords = new NumberToWords();
     $numberEn = $numberToWords->getCurrencyTransformer('en');
-?>
-<!doctype html>
-<html>
-    <body>
-        <table border="3" cellpadding="10">
-            <tr>
-                <th colspan="4">Rogata Airlines</th>
-            </tr>
-            <tr>
-                <th>Passenger</th>
-                <td colspan="3"><?php echo $passangerName;?></td>
-            </tr>
-            <tr>
-                <th>FROM</th>
-                <td colspan="3"><?php echo $startAirport;?></td>
-            </tr>
-            <tr>
-                <th>Departure (local time)</th>
-                <td><?php echo $dateStartZone.' ('.$timezoneStart.')';?></td>
-                <th>Code</th>
-                <td><?php echo $codeStart;?></td>
-            </tr>
-            <tr>
-                <th>TO</th>
-                <td colspan="3"><?php echo $endAirport;?></td>
-            </tr>
-            <tr>
-                <th>Arrival (local time)</th>
-                <td><?php echo $dateEndZone.' ('.$timezoneEnd.')';?></td>
-                <th>Code</th>
-                <td><?php echo $codeEnd;?></td>
-            </tr>
-            <tr>
-                <th>Ticket cost</th>
-                <td><?php echo $priceFly.'&euro; ('.$numberEn->toWords($priceFlyImplode, 'EUR').')';?></td>
-                <th>Flight time</th>
-                <td><?php echo $lengthFly,' h';?></td>
-            </tr>
-        </table>
-            
-    </body>
-</html>
+
+//use mPDF\mPDF;
+
+
+$html ='<html>
+            <body>
+                <table border="3" cellpadding="10">
+                    <tr>
+                        <th colspan="4">Rogata Airlines</th>
+                    </tr>
+                    <tr>
+                        <th>Passenger</th>
+                        <td colspan="3">'.$passangerName.'</td>
+                    </tr>
+                    <tr>
+                        <th>FROM</th>
+                        <th>'.$startAirport.'</th>
+                        <th>Code</th>
+                        <td>'.$codeStart.'</td>
+                    </tr>
+                    <tr>
+                        <th>Departure (local time)</th>
+                        <td colspan="3">'.$dateStartZone.' ('.$timezoneStart.')</td>
+                    </tr>
+                    <tr>
+                        <th>TO</th>
+                        <th>'.$endAirport.'</th>
+                        <th>Code</th>
+                        <td>'.$codeEnd.'</td>
+                    </tr>
+                    <tr>
+                        <th>Arrival (local time)</th>
+                        <td colspan="3">'.$dateEndZone.' ('.$timezoneEnd.')</td>
+                    </tr>
+                    <tr>
+                        <th>Ticket cost</th>
+                        <td>'.$priceFly.'&euro; ('.$numberEn->toWords($priceFlyImplode, 'EUR').')</td>
+                        <th>Flight time</th>
+                        <td>'.$lengthFly.' h</td>
+                    </tr>
+                </table>
+
+            </body>
+        </html>';
+//echo $html;
+
+$mpdf = new mPDF();
+$mpdf ->WriteHTML($html);
+$mpdf ->Output('ticket.pdf', 'D');
+
