@@ -125,5 +125,5 @@ $html ='<html>
 
 $mpdf = new mPDF();
 $mpdf ->WriteHTML($html);
-$mpdf ->Output('ticket.pdf', 'D');
+$mpdf ->Output('flight_ticket.pdf', 'D');
 
