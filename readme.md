@@ -1,40 +1,26 @@
 #  Warsztaty
 
-> Zadania warsztatowe staraj się wykonywać samodzielnie, możesz w każdej chwili poprosić wykładowcę o pomoc.
+#### Zadanie1.php
 
-**WAŻNE -  nie zmieniaj struktury/nazw plików oraz korzystaj z przygotowanych zmiennych**  
-
-**Po każdym zdaniu zrób commit z opisem w języku angielskim np. `added airports to form`**
-
-#### Zadanie 1 - rozgrzewka (~20min.)
-
-1. Stwórz stronę z formularzem, która:  
+Plik zawiera prosty formularz, który :  
    * prosi o imię użytkownika
-   * po kliknięciu przycisku `wyślij` przekierowuje na podstronę witającą użytkownika słowami `„Cześć, {$imię}!”`
-   
-### Wskazówki:
-1. Formularz ma przekierowywać na tę samą stronę.
-2. Na samym początku sprawdź, czy strona została wygenerowana przez zapytanie ```GET``` czy ```POST``` (użyj `if` i ```$_SERVER['REQUEST_METHOD']```)
-3. Sprawdź, czy w tablicy `POST` znajduje się prawidłowa zmienna.
-4. Jeżeli coś nie działa &ndash; debuguj!
+   * po kliknięciu przycisku `wyślij` przekierowuje na podstronę witającą użytkownika słowami `„Cześć, {$name}!”`
+   * formularz przekierowuje na tę samą stronę metodą POST
 
-#### Zadanie 2 (~30min.)
 
-Napisz prosty symulator Lotto.  
-1. Symulator ma się składać ze strony z formularzem pozwalającym wybrać `6` liczb z zakresu `1-49`
-2. Po wysłaniu formularza strona ma sama wylosować `6` (różnych) liczb z tego samego zakresu
-3. Po wylosowaniu wyświetl wylosowane liczby
-4. Sprawdź, które liczby wybrane przez użytkownika pokrywają się z wylosowanymi i wyświetl stosowną informację
+#### Zadanie2.php
+
+W pliku znajduje się prosty symulator Lotto.  
+* Symulator składa się ze strony z formularzem pozwalającym wybrać `6` liczb z zakresu `1-49`
+* Po wysłaniu formularza strona losowo wybiera `6` liczb z tego samego zakresu
+* Po wylosowaniu wyświetla wylosowane liczby
+* Sprawdza, które liczby wybrane przez użytkownika pokrywają się z wylosowanymi losowo i wyświetla odpowieni komunikat
 
 -------------------------------------------------------------------------------
 
-> Kolejne zadania są ze sobą ściśle powiązane, wykonuj je po kolei i nie przechodź do kolejnego zadania, jeśli poprzednie nie zostało rozwiązane  
-> **Zadania rozwiązuj w katalogu `flights`, gdzie będziesz dodawać kolejne etapy**  
-
 > Celem kolejnych zadań jest napisanie funkcjonalnego formularza generowania biletów lotniczych w PDF  
-> Twórz zmienne nazwane w sposób logiczny, aby wskazywały co w nich się znajduje używając `camelCase`
 
-#### Zadanie 3 - wizyty na stronie (~30min.)
+#### Flight
 
 Celem zadania jest napisanie skryptu, wyświetlającego ostatnie odwiedziny na stronie
 1. W katalogu znajduje się plik `index.php` z podstawową strukturą strony.
