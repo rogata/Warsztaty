@@ -18,17 +18,16 @@ W pliku znajduje się prosty symulator Lotto.
 
 -------------------------------------------------------------------------------
 
-> Celem kolejnych zadań jest napisanie funkcjonalnego formularza generowania biletów lotniczych w PDF  
+#### Flights
 
-#### Flight
+> W tym katalogu znajduje się funkcjonalny formularz do generowania biletów lotniczych w PDF  
 
-Celem zadania jest napisanie skryptu, wyświetlającego ostatnie odwiedziny na stronie
 1. W katalogu znajduje się plik `index.php` z podstawową strukturą strony.
-2. Stwórz w katalogu `includes` plik `visits.php` w którym:  
-   * Sprawdź czy użytkownik posiada zapisane ciasteczko o nazwie `visits`, jeśli nie wyświetl komunikat: `Witaj pierwszy raz na naszej stronie`  
-     Dodaj ciasteczko o nazwie `visits` zapisując mu wartość `1` i czas ważności `1` rok
-   * Jeśli ciasteczko jest zapisane, pobierz jego aktualną wartość i wypisz na stronie komunikat `Witaj, odwiedziłeś nas już X razy`  
-     Zwiększ wartość ciasteczka o `1`
+2. W katalogu `includes` znajduje się plik `visits.php` który:  
+   * Sprawdza czy użytkownik posiada zapisane ciasteczko o nazwie `visits`, jeśli nie, wyświetli komunikat: `Witaj pierwszy raz na naszej stronie`  
+     Dodaje ciasteczko o nazwie `visits` zapisując mu wartość `1` i czas ważności `1` rok
+   * Jeśli ciasteczko jest zapisane, pobiera jego aktualną wartość i wypisuje na stronie komunikat `Witaj, odwiedziłeś nas już X razy`  
+     Zwiększa wartość ciasteczka o `1`
 3. Dołącz do głównego pliku, plik odpowiedzialny za informację o wizytach na stronie.
 
 #### Zadanie 4 - formularz (~30min.)
