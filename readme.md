@@ -28,83 +28,38 @@ W pliku znajduje się prosty symulator Lotto.
      Dodaje ciasteczko o nazwie `visits` zapisując mu wartość `1` i czas ważności `1` rok
    * Jeśli ciasteczko jest zapisane, pobiera jego aktualną wartość i wypisuje na stronie komunikat `Witaj, odwiedziłeś nas już X razy`  
      Zwiększa wartość ciasteczka o `1`
-3. Dołącz do głównego pliku, plik odpowiedzialny za informację o wizytach na stronie.
+ 3. W pliku `form.php` znajduje się formularz wyboru:
+   * lotniska wylotu i przylotu    
+   * czas startu i długość lotu
+   Lista lotnisk znajduje się w pliku `airports.php`
 
-#### Zadanie 4 - formularz (~30min.)
- 
- Celem zadania jest stworzenie formularza do generowania biletu lotniczego.  
- 
- 1. Stwórz formularz w html, który przesyła metodą `POST` dane do pliku `pdf.php` (ten plik stworzymy w kolejnych zadaniach)
- 2. Formularz powinien być dodany do pliku `form.php` w katalogu `includes`
- 3. Dołącz ten plik do głównej strony, aby mieć podgląd w trakcie tworzenia formularza
- 4. Formularz powinien zawierać:  
-    * Lotnisko wylotu - pole `select`
-    * Lotnisko przylotu - pole `select`
-    * Czas startu - pole `datetime-local` (będzie to czas wylotu w czasie lokalnym lotniska)
-    * Długość lotu w godzinach - pole `number` `min="0"`, `step="1"`
-    * Cenę lotu - pole `number` `min="0"`, `step="0.01"`
- 5. Lista lotnisk została przygotowana w pliku `airports.php` w katalogu `includes`, użyj pętli aby wygenerować pola `option` z lotniskami,  
-    Pamiętaj o dołączeniu pliku z lotniskami do pliku głównego  
-    Każde lotnisko posiada:
-    * Nazwę `name`
-    * Kod `code`
-    * Strefę czasową `timezone`
-    
-#### Zadanie 5 - obsługa formularza (~30min.)
+ Przetwarzanie danych pobranych z formularza.  
 
-Celem zadania jest obsługa i przetworzenie danych pobranych z formularza.  
+1. Plik `pdf.php` w katalogu głównym, odbiera dane z formularza
+2. Sprawdza czy użytkownik nie wybrał takiego samego lotniska wylotu i przylotu
+3. Sprawdza czy data i czas lotu zostały podana
+4. Sprawdza czy cena lotu jest większa od `0`
+5. Pobiera dane z formularza do zmiennych
+6. Znajduje strefę czasową lotniska wylotu i zapisuje ją do zmiennej
+7. Znajduje strefę czasową lotniska przylotu i zapisuje ją do zmiennej
+8. Dodaje do daty czas lotu i wybiera strefę czasową lotniska przylotu
 
-1. Stwórz plik `pdf.php` w katalogu głównym, który będzie odbierał dane z formularza
-2. Sprawdź czy użytkownik nie wybrał takiego samego lotniska wylotu i przylotu
-3. Sprawdź czy data i czas lotu zostały podana
-4. Sprawdź czy cena lotu jest większa od `0`
-5. Pobierz dane z formularza do zmiennych
-6. Znajdź strefę czasową lotniska wylotu i zapisz ją do zmiennej
-7. Znajdź strefę czasową lotniska przylotu i zapisz ją do zmiennej
-8. Korzystając z `DateTime` stwórz obiekt z datą lotniska wylotu w jego strefie czasowej, i zapisz sformatowany czas (`DD.MM.RRRR GG:MM:SS`) do zmiennej 
-9. Dodaj do daty czas lotu i zmień strefę czasową na lotnisko przylotu i zapisz sformatowany czas (`DD.MM.RRRR GG:MM:SS`) do zmiennej
+Wyświetlenie danych przetworzonych w poprzednim zadaniu.  
 
-Hint: Aby sprawdzić czy dane są prawidłowe możesz wypisać wartości zmiennych a następnie te linie kodu usnąć lub zakomentować
-
-#### Zadanie 6 - wyświetlanie danych (~30min.)
-
-Celem zadania jest wyświetlenie danych przetworzonych w poprzednim zadaniu.  
-
-1. Stwórz w html tabelę zawierającą dane (wygląd tabeli nie ma znaczenia):  
+1. Tworzę w html tabelę zawierającą dane:  
    * lotnisko wylotu z czasem wylotu i kodem lotniska
    * lotnisko przylotu z czasem przylotu i kodem lotniska
    * czas lotu
    * cenę lotu
+2. Korzystając z biblioteki [fzaninotto/faker - packagist][fzaninotto/faker-packagist] [fzaninotto/faker - github][fzaninotto/faker-github],  
+   generuję imię i nazwisko pasażera
 
-#### Zadanie 7 - pasażerowie (~40min.)
 
-Celem zadania jest wygenerowanie danych pasażera i dodanie ich do tabeli.  
-Pamiętaj aby katalog `vendor` dodać do `.gitignore`  
+3. Korzystając z biblioteki [kwn/number-to-words - packagist][kwn/number-to-words-packagist] [kwn/number-to-words - github][kwn/number-to-words-github],  
+   generuję słowną cenę lotu 
 
-1. Korzystając z poznanej już biblioteki [fzaninotto/faker - packagist][fzaninotto/faker-packagist] [fzaninotto/faker - github][fzaninotto/faker-github],  
-   wygeneruj imię i nazwisko pasażera i zapisz do zmiennej
-2. Dodaj do tabeli dane pasażera
-
-#### Zadanie 8 - cena słownie (~40min.)
-
-Celem zadania jest wypisanie ceny lotu słownie.  
-
-1. Korzystając z poznanej już biblioteki [kwn/number-to-words - packagist][kwn/number-to-words-packagist] [kwn/number-to-words - github][kwn/number-to-words-github],  
-   wygeneruj słowną cenę lotu i zapisz do zmiennej
-2. Dodaj do tabeli kwotę słowną
-3. Po tym zadaniu w pliku `pdf.php` powinna być widoczna, po przesłaniu formularza, tabela z przykładowym lotem
-
-#### Zadanie 9 - generowanie PDF (~60min.)
-
-Celem zadania jest wygenerowanie gotowego pliku PDF zawierającego lot na podstawie danych z formularza.  
-
-1. Korzystając z biblioteki [mpdf/mpdf - packagist][mpdf/mpdf-packagist] [mpdf/mpdf - github][mpdf/mpdf-github],  
-   wygeneruj plik `PDF` po przesłaniu formularza
-2. Aby to zrobić musisz zapisać do zmiennej całą strukturę wygenerowanego kodu html, zazwyczaj wystarczy umieszczenie kodu w apostrofach `'`
-3. Dodaj plik `autoload.php` do pliku `pdf.php`
-4. Stwórz obiekt `Mpdf` - użyj do tego `$mpdf = new mPDF();`, gdyż na repozytorium jest informacja o tworzeniu obiektu dla starej wersji biblioteki
-5. Używając odpowiedniej metody wygeneruj plik `PDF`, przykład użycia znajduje się na repozytorium biblioteki
-6. Domyślnie plik `PDF` zostanie załadowany w przeglądarce, aby wymusić pobranie pliku przeczytaj dokumentację metody `output` biblioteki [mpdf-output][mpdf-output] i zmień wywołanie metody aby wymuszała ona pobranie pliku `PDF`
+4. Korzystając z biblioteki [mpdf/mpdf - packagist][mpdf/mpdf-packagist] [mpdf/mpdf - github][mpdf/mpdf-github],  
+   generuję plik `PDF` po przesłaniu formularza
 
 #### Podsumowanie
 
